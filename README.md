@@ -82,47 +82,19 @@ cd ..
 
 ### 3. Environment Configuration
 
-Create a `.env` file in the root directory based on your development environment:
+**Important**: Before running the app, you need to configure the backend URL for your network.
 
-#### For iOS Simulator / Android Emulator (localhost)
-```env
-EXPO_PUBLIC_API_BASE_URL=http://localhost:3000
-EXPO_PUBLIC_API_TIMEOUT=10000
+#### Option 1: Edit the API configuration directly (Recommended)
+Update the default URL in `src/services/api.ts` to match your computer's IP address:
+
+```typescript
+const API_BASE_URL = process.env.EXPO_PUBLIC_API_BASE_URL || 'http://YOUR_IP_ADDRESS:3000';
 ```
 
-#### For Physical Device Testing
-First, find your computer's IP address:
+Replace `YOUR_IP_ADDRESS` with your actual IP address (e.g., `192.168.0.102`).
 
-**Windows:**
-```bash
-ipconfig
-# Look for "IPv4 Address" under your active network adapter
-```
 
-**macOS/Linux:**
-```bash
-ifconfig
-# Look for "inet" address under your active network interface (usually en0 or wlan0)
-```
-
-**Alternative (any OS):**
-```bash
-# When you run 'npm start', Expo will display your IP address in the terminal
-```
-
-Then create your `.env` file:
-```env
-EXPO_PUBLIC_API_BASE_URL=http://YOUR_IP_ADDRESS:3000
-EXPO_PUBLIC_API_TIMEOUT=10000
-```
-
-**Example:**
-```env
-EXPO_PUBLIC_API_BASE_URL=http://192.168.0.102:3000
-EXPO_PUBLIC_API_TIMEOUT=10000
-```
-
-### 4. Start the Backend Server
+### 2. Start the Backend Server
 ```bash
 cd backend
 npm run dev
@@ -132,7 +104,7 @@ npm start
 
 The server will run on `http://localhost:3000`
 
-### 5. Start the Mobile App
+### 3. Start the Mobile App
 ```bash
 npm start
 ```
@@ -280,6 +252,7 @@ npm start
 - Biometric authentication
 - Real-time balance updates
 
+
 ## Contributing
 
 1. Fork the repository
@@ -291,3 +264,7 @@ npm start
 ## License
 
 This project is for educational purposes.
+
+
+
+
